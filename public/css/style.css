@@ -19,7 +19,7 @@
 }
 
 body {
-    background-image: url('https://img.freepik.com/free-vector/pet-care-background-template-with-animals_53876-115936.jpg');
+    background-image: url('../images/veterinario.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -31,7 +31,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.90);
     min-height: 100vh;
     box-shadow: var(--shadow);
 }
