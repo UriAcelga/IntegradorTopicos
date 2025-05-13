@@ -1,32 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Veterinaria - Inicio</title>
-    <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Mi Veterinaria</h1>
-            <div id="datetime"></div>
-        </header>
+<?= $this->extend('layouts/default') ?>
 
-        <main id="main-content">
-            <div id="welcome-screen" class="active-view">
-                <div class="welcome-content">
-                    <h2>Bienvenido a Mi Veterinaria</h2>
-                    <p>Sistema de gestión para mascotas, amos y veterinarios</p>
-                    <button id="start-btn" class="btn btn-primary" onclick="window.location.href='<?= route_to('altas') ?>'">Comenzar</button>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2023 Mi Veterinaria - Todos los derechos reservados</p>
-        </footer>
+<?= $this->section('content') ?>
+<div id="welcome-screen" class="flex flex-col items-center justify-center h-full bg-white rounded-md shadow-md p-6 mt-4">
+    <div class="welcome-content text-center">
+        <h2 class="text-6xl font-semibold mb-6 leading-relaxed text-green-500 w-2/3 inline-block">Bienvenido a Mi Veterinaria</h2>
+        <p class="text-gray-700 mb-6">Sistema de gestión para mascotas, amos y veterinarios</p>
+        <button id="start-btn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="window.location.href='<?= route_to('altas') ?>'">Comenzar</button>
     </div>
-    <script src="<?= base_url('js/viewManager.js') ?>"></script>
-    <script src="<?= base_url('js/app.js') ?>"></script>
-</html>
+</div>
+<?= $this->endSection() ?>

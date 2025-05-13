@@ -5,39 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Veterinaria - Alta</title>
-    <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/output.css') ?>">
 </head>
 
-<body>
-    <div class="container">
-        <header>
-            <h1>Mi Veterinaria</h1>
-            <div id="datetime"></div>
+<body class="bg-[url('<?= base_url('images/veterinario.jpg') ?>')] bg-cover font-sans antialiased">
+    <div class="mx-auto max-w-3xl p-4">
+        <header class="bg-green-500 text-white py-4 px-6 rounded-t-md shadow-md flex justify-between items-center">
+            <h1 class="text-2xl font-semibold">Mi Veterinaria</h1>
+            <div id="datetime" class="text-sm"></div>
         </header>
 
-        <nav id="main-menu">
-            <ul>
-                <li><a href="<?= route_to('altas') ?>" data-view="alta">Alta</a></li>
-                <li><a href="<?= route_to('bajas') ?>" data-view="baja">Baja</a></li>
-                <li><a href="<?= route_to('modificacion') ?>" data-view="modificacion">Modificación</a></li>
-                <li><a href="<?= route_to('mostrar') ?>" data-view="mostrar">Mostrar</a></li>
-            </ul>
-        </nav>
+        <?= $this->renderSection('nav') ?>
 
-        <main id="main-content">
-            <?= $this->renderSection('content'); ?>
-
+        <main class="bg-white rounded-md shadow-md p-6 mt-4">
+            <?= $this->renderSection('content') ?>
         </main>
 
-        <footer>
-            <button id="back-btn" class="btn btn-secondary" onclick="window.location.href='inicio.html'">Volver al Inicio</button>
+        <footer class="bg-white rounded-b-md shadow-md py-4 px-6 mt-4 flex flex-col items-center text-sm text-gray-500">
+            <a href="<?= route_to('/') ?>" class="text-green-500 hover:text-green-700 font-semibold mb-2">Volver a inicio</a>
             <p>&copy; 2025 Mi Veterinaria - Todos los derechos reservados</p>
         </footer>
     </div>
 
     <script src="<?= base_url('js/viewManager.js') ?>"></script>
     <script src="<?= base_url('js/app.js') ?>"></script>
-    
+    <script src="<?= base_url('js/modal.js') ?>"></script>
 </body>
 
 </html>
