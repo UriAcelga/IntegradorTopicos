@@ -5,142 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Veterinaria - Alta</title>
-    <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="<?= base_url('css/output.css') ?>">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+
 </head>
 
-<body>
-    <div class="container">
-        <header>
-            <h1>Mi Veterinaria</h1>
-            <div id="datetime"></div>
+<body style="background-image: url('<?= base_url('images/veterinario.jpg') ?>')" class="bg-cover font-sans antialiased">
+    <div class="mx-auto max-w-3xl p-4">
+        <header class="bg-green-500 text-white py-4 px-6 rounded-t-md shadow-md flex justify-between items-center">
+            <h1 class="text-2xl font-semibold">Mi Veterinaria</h1>
+            <div id="datetime" class="text-sm"></div>
         </header>
 
-        <nav id="main-menu">
-            <ul>
-                <li><a href="<?= base_url('altas') ?>" data-view="alta">Alta</a></li>
-                <li><a href="<?= base_url('bajas') ?>" data-view="baja">Baja</a></li>
-                <li><a href="<?= base_url('modificacion') ?>" data-view="modificacion">Modificación</a></li>
-                <li><a href="<?= base_url('mostrar') ?>" data-view="mostrar">Mostrar</a></li>
-            </ul>
-        </nav>
+        <?= $this->renderSection('nav') ?>
 
-        <main id="main-content">
-            <?= $this->renderSection('content'); ?>
-            <div id="alta-view" class="view">
-                <h2>Alta de Registros</h2>
-                <div class="tabs">
-                    <button class="tab-btn active" data-tab="mascota-amo">Mascota-Amo</button>
-                    <button class="tab-btn" data-tab="veterinario">Veterinario</button>
-                    <button class="tab-btn" data-tab="mascota">Mascota</button>
-                    <button class="tab-btn" data-tab="amo">Amo</button>
-                </div>
-
-                <div id="mascota-amo-tab" class="tab-content active">
-                    <h3>Registro de Mascota y Amo</h3>
-                    <form id="mascota-amo-form">
-                        <div class="form-section">
-                            <h4>Datos del Amo</h4>
-                            <div class="form-group">
-                                <label for="amo-select">Seleccionar Amo Existente:</label>
-                                <select id="amo-select">
-                                    <option value="">-- Nuevo Amo --</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-section">
-                            <h4>Datos de la Mascota</h4>
-                            <div class="form-group">
-                                <label for="mascota-select">Seleccionar Mascota Existente:</label>
-                                <select id="mascota-select">
-                                    <option value="">-- Nueva Mascota --</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-success">Guardar</button>
-                    </form>
-                </div>
-
-                <div id="veterinario-tab" class="tab-content">
-                    <h3>Registro de Veterinario</h3>
-                    <form id="veterinario-form">
-                        <div class="form-group">
-                            <label for="vet-nombre">Nombre y Apellido:</label>
-                            <input type="text" id="vet-nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="vet-especialidad">Especialidad:</label>
-                            <select id="vet-especialidad">
-                                <option value="">-- Especialidades --</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="vet-telefono">Teléfono Personal:</label>
-                            <input type="tel" id="vet-telefono" required>
-                        </div>
-                        <button type="submit" class="btn btn-success">Guardar</button>
-                    </form>
-                </div>
-
-                <div id="mascota-tab" class="tab-content">
-                    <h3>Registro de Mascota</h3>
-                    <form id="mascota-form">
-                        <div class="form-group">
-                            <label for="masc-nombre">Nombre mascota:</label>
-                            <input type="text" id="masc-nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="masc-especie">Especie:</label>
-                            <select id="masc-especie">
-                                <option value="">-- Especies --</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="masc-raza">Raza:</label>
-                            <select id="masc-raza">
-                                <option value="">-- Razas --</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="masc-edad">Edad:</label>
-                            <input type="text" id="masc-edad" required>
-                        </div>
-                        <button type="submit" class="btn btn-success">Guardar</button>
-                    </form>
-                </div>
-
-                <div id="amo-tab" class="tab-content">
-                    <h3>Registro de Amo</h3>
-                    <form id="amo-form">
-                        <div class="form-group">
-                            <label for="amo-nombre">Nombre del Amo:</label>
-                            <input type="text" id="amo-nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="amo-apellido">Apellido del amo:</label>
-                            <input type="text" id="amo-apellido" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="amo-telefono">Telefono:</label>
-                            <input type="text" id="amo-telefono" required>
-                        </div>
-                        <button type="submit" class="btn btn-success">Guardar</button>
-                    </form>
-                </div>
-            </div>
+        <main class="bg-white rounded-md shadow-md p-6 mt-4">
+            <?= $this->renderSection('content') ?>
         </main>
 
-        <footer>
-            <button id="back-btn" class="btn btn-secondary" onclick="window.location.href='inicio.html'">Volver al Inicio</button>
-            <p>&copy; 2023 Mi Veterinaria - Todos los derechos reservados</p>
+        <footer class="bg-white rounded-b-md shadow-md py-4 px-6 mt-4 flex flex-col items-center text-sm text-gray-500">
+            <a href="<?= route_to('/') ?>" class="text-green-500 hover:text-green-700 font-semibold mb-2">Volver a inicio</a>
+            <p>&copy; 2025 Mi Veterinaria - Todos los derechos reservados</p>
         </footer>
     </div>
 
     <script src="<?= base_url('js/viewManager.js') ?>"></script>
     <script src="<?= base_url('js/app.js') ?>"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 
 </html>
