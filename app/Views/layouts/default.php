@@ -18,10 +18,10 @@
 
         <nav id="main-menu">
             <ul>
-                <li><a href="<?= route_to('altas') ?>" data-view="alta">Alta</a></li>
-                <li><a href="<?= route_to('bajas') ?>" data-view="baja">Baja</a></li>
-                <li><a href="<?= route_to('modificacion') ?>" data-view="modificacion">Modificación</a></li>
-                <li><a href="<?= route_to('mostrar') ?>" data-view="mostrar">Mostrar</a></li>
+                <li><a href="<?= base_url('altas') ?>" data-view="alta">Alta</a></li>
+                <li><a href="<?= base_url('bajas') ?>" data-view="baja">Baja</a></li>
+                <li><a href="<?= base_url('modificacion') ?>" data-view="modificacion">Modificación</a></li>
+                <li><a href="<?= base_url('mostrar') ?>" data-view="mostrar">Mostrar</a></li>
             </ul>
         </nav>
 

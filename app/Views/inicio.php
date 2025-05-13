@@ -19,7 +19,7 @@
                 <div class="welcome-content">
                     <h2>Bienvenido a Mi Veterinaria</h2>
                     <p>Sistema de gestión para mascotas, amos y veterinarios</p>
-                    <button id="start-btn" class="btn btn-primary" onclick="window.location.href='<?= route_to('altas') ?>'">Comenzar</button>
+                    <button id="start-btn" class="btn btn-primary" onclick="window.location.href='<?= base_url('altas') ?>'">Comenzar</button>
                 </div>
             </div>
         </main>
