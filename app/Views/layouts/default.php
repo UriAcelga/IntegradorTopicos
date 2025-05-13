@@ -24,7 +24,7 @@
         </main>
 
         <footer class="bg-white rounded-b-md shadow-md py-4 px-6 mt-4 flex flex-col items-center text-sm text-gray-500">
-            <a href="<?= route_to('/') ?>" class="text-green-500 hover:text-green-700 font-semibold mb-2">Volver a inicio</a>
+            <a href="<?= base_url('/') ?>" class="text-green-500 hover:text-green-700 font-semibold mb-2">Volver a inicio</a>
             <p>&copy; 2025 Mi Veterinaria - Todos los derechos reservados</p>
         </footer>
     </div>
