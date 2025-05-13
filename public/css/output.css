@@ -208,6 +208,12 @@
   .w-screen {
     width: 100vw;
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
+  .resize {
+    resize: both;
+  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -217,6 +223,9 @@
   }
   .text-center {
     text-align: center;
+  }
+  .underline {
+    text-decoration-line: underline;
   }
   .outline {
     outline-style: var(--tw-outline-style);
