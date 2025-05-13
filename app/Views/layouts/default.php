@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Veterinaria - Alta</title>
     <link rel="stylesheet" href="<?= base_url('css/output.css') ?>">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+
 </head>
 
-<body class="bg-[url('<?= base_url('images/veterinario.jpg') ?>')] bg-cover font-sans antialiased">
+<body style="background-image: url('<?= base_url('images/veterinario.jpg') ?>')" class="bg-cover font-sans antialiased">
     <div class="mx-auto max-w-3xl p-4">
         <header class="bg-green-500 text-white py-4 px-6 rounded-t-md shadow-md flex justify-between items-center">
             <h1 class="text-2xl font-semibold">Mi Veterinaria</h1>
@@ -29,7 +31,7 @@
 
     <script src="<?= base_url('js/viewManager.js') ?>"></script>
     <script src="<?= base_url('js/app.js') ?>"></script>
-    <script src="<?= base_url('js/modal.js') ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 
 </html>
