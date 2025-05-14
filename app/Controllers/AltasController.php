@@ -30,6 +30,7 @@ class AltasController extends BaseController
             'mascotas_disponibles_para_select' => $listaDeMascotasDisponibles,
             'validation' => session()->getFlashdata('validation'), // Para mostrar errores si vienen de un redirect
             // Para repoblar selects si la validación falló en guardarAsociacion:
+            'validation_veterinario' => session()->getFlashdata('validation_veterinario'), // Para el form de veterinario
             'old_selected_amo' => old('select_amo'),
             'old_selected_mascota' => old('id_mascota_a_asociar')
         ];
@@ -257,8 +258,12 @@ class AltasController extends BaseController
 
         // Mostrar Mensajes de error
         if (!$this->validate($rules, $messages)) {
-            return redirect()->to('/altas')->withInput()->with('errors', $validation->getErrors());
-        }
+        // Usamos $this->validator para pasar el objeto validador completo.
+        // La clave 'validation' debe coincidir con lo que index() espera.
+        return redirect()->to('/altas#veterinario-tab') // Redirige al tab específico
+                         ->withInput()
+                         ->with('validation_veterinario', $this->validator); // Usamos una clave específica para este formulario
+    }
         $data = [
             'nombre' => $this->request->getPost('nombre'),
             'especialidad' => $this->request->getPost('especialidad'),
@@ -266,10 +271,10 @@ class AltasController extends BaseController
         ];
         $veterinarios_db = new Veterinarios_db();
         if ($veterinarios_db->CargarVeterinario($data)) {
-            return redirect()->to('/altas')->with('success', 'El Veterinario ha sido registrado exitosamente.');
-        } else {
-            return redirect()->to('/altas')->with('error', 'Error al registrar el Veterinario.');
-        }
+              return redirect()->to('/altas#veterinario-tab')->with('success_veterinario', 'El Veterinario ha sido registrado exitosamente.');
+    } else {
+        return redirect()->to('/altas#veterinario-tab')->with('error_veterinario', 'Error al registrar el Veterinario.');
+    }
         
     }
 

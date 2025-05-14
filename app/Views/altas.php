@@ -78,40 +78,62 @@
         </form>
 
     </div>
+<div id="veterinario-tab" class="tab-content">
+    <h3>Registro de Veterinario</h3>
 
-    <div id="veterinario-tab" class="tab-content">
-        <h3>Registro de Veterinario</h3>
-        <form id="veterinario-form">
-              <form id="veterinario-form" action="<?= site_url('altas/alta_veterinario') ?>" method="post">
-            <div class="form-group">
-                <label for="vet-nombre">Nombre y Apellido:</label>
-                <input type="text" name= "nombre" id="vet-nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="vet-especialidad">Especialidad:</label>
-                <select id="vet-especialidad" name= "especialidad" required>
-                    <option>-- Especialidades --</option>
-                    <option value="general">-- Generalista --</option>
-                    <option value="interno">-- Interno --</option>
-                    <option value="cirugía">-- Cirujía --</option>
-                    <option value="dermatología">-- Dermatología --</option>
-                    <option value="cardiología">-- Cardiología --</option>
-                    <option value="oftalmología">-- Oftalmología --</option>
-                    <option value="oncología">-- Oncología --</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="vet-telefono">Teléfono Personal:</label>
-                <input type="input" id="vet-telefono" name= "telefono" required>
-            </div>
-            <button type="submit" class="btn btn-success">Guardar</button>
-        </form>
-        <?php if (isset($validation)): ?>
-            <div class="alert alert-danger">
-                <?= $validation->listErrors() ?>
-            </div>
-        <?php endif; ?>
-    </div>
+    <?php if (session()->getFlashdata('success_veterinario')): ?>
+        <div class="alert alert-success"><?= session()->getFlashdata('success_veterinario') ?></div>
+    <?php endif; ?>
+    <?php if (session()->getFlashdata('error_veterinario')): ?>
+        <div class="alert alert-danger"><?= session()->getFlashdata('error_veterinario') ?></div>
+    <?php endif; ?>
+
+    <form id="veterinario-form" action="<?= site_url('altas/alta_veterinario') ?>" method="post">
+        <?= csrf_field() ?>
+        <div class="form-group">
+            <label for="vet-nombre">Nombre y Apellido:</label>
+            <input type="text" name="nombre" id="vet-nombre" value="<?= set_value('nombre') ?>" class="form-control" required>
+            <?php if (isset($validation_veterinario) && $validation_veterinario->hasError('nombre')): ?>
+                <div class="text-danger" style="font-size:0.85em;"><?= $validation_veterinario->getError('nombre') ?></div>
+            <?php endif; ?>
+        </div>
+        <div class="form-group">
+            <label for="vet-especialidad">Especialidad:</label>
+            <select id="vet-especialidad" name="especialidad" class="form-control" required>
+                <option value="">-- Especialidades --</option> <option value="general" <?= set_select('especialidad', 'general') ?>>Generalista</option>
+                <option value="interno" <?= set_select('especialidad', 'interno') ?>>Interno</option>
+                <option value="cirugia" <?= set_select('especialidad', 'cirugia') ?>>Cirugía</option> <option value="dermatologia" <?= set_select('especialidad', 'dermatologia') ?>>Dermatología</option>
+                <option value="cardiologia" <?= set_select('especialidad', 'cardiologia') ?>>Cardiología</option>
+                <option value="oftalmologia" <?= set_select('especialidad', 'oftalmologia') ?>>Oftalmología</option>
+                <option value="oncologia" <?= set_select('especialidad', 'oncologia') ?>>Oncología</option>
+            </select>
+            <?php if (isset($validation_veterinario) && $validation_veterinario->hasError('especialidad')): ?>
+                <div class="text-danger" style="font-size:0.85em;"><?= $validation_veterinario->getError('especialidad') ?></div>
+            <?php endif; ?>
+        </div>
+        <div class="form-group">
+            <label for="vet-telefono">Teléfono Personal:</label>
+            <input type="tel" id="vet-telefono" name="telefono" value="<?= set_value('telefono') ?>" class="form-control" required>
+            <?php if (isset($validation_veterinario) && $validation_veterinario->hasError('telefono')): ?>
+                <div class="text-danger" style="font-size:0.85em;"><?= $validation_veterinario->getError('telefono') ?></div>
+            <?php endif; ?>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+
+    <?php /* Ya no es necesario mostrar listErrors() aquí si muestras errores por campo
+          o si prefieres un bloque de errores general para este formulario específico: */ ?>
+    <?php if (isset($validation_veterinario) && $validation_veterinario->getErrors() && !$config->inlineErrors): // Muestra un resumen si no son errores inline ?>
+        <div class="alert alert-danger mt-3">
+            <strong>Por favor, corrija los errores:</strong>
+            <ul>
+            <?php foreach ($validation_veterinario->getErrors() as $error): ?>
+                <li><?= esc($error) ?></li>
+            <?php endforeach ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+</div>
 
     <div id="mascota-tab" class="tab-content">
         <h3>Registro de Mascota</h3>
