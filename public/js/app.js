@@ -44,43 +44,44 @@ class App {
     }
 
     // Inicializar eventos de formularios y otros elementos interactivos
+   /*
     initFormEvents() {
         // --- Formularios de Alta (altas.html) ---
         document.getElementById('mascota-amo-form')?.addEventListener('submit', (e) => {
             e.preventDefault();
             console.log('Formulario de alta mascota-amo enviado');
-            alert('Alta Mascota-Amo: Implementa tu lógica aquí.');
+           // alert('Alta Mascota-Amo: Implementa tu lógica aquí.');
         });
         
         document.getElementById('veterinario-form')?.addEventListener('submit', (e) => {
             e.preventDefault();
             console.log('Formulario de alta veterinario enviado');
-            alert('Alta Veterinario: Implementa tu lógica aquí.');
+            //alert('Alta Veterinario: Implementa tu lógica aquí.');
         });
 
         document.getElementById('mascota-form')?.addEventListener('submit', (e) => {
             e.preventDefault();
             console.log('Formulario de alta mascota individual enviado');
-            alert('Alta Mascota: Implementa tu lógica aquí.');
+            //alert('Alta Mascota: Implementa tu lógica aquí.');
         });
 
         document.getElementById('amo-form')?.addEventListener('submit', (e) => {
             e.preventDefault();
             console.log('Formulario de alta amo individual enviado');
-            alert('Alta Amo: Implementa tu lógica aquí.');
+            //alert('Alta Amo: Implementa tu lógica aquí.');
         });
         
         // --- Formularios de Baja (bajas.html) ---
         document.getElementById('baja-mascota-amo-form')?.addEventListener('submit', (e) => {
             e.preventDefault();
             console.log('Formulario de baja mascota-amo enviado');
-            alert('Baja Mascota-Amo: Implementa tu lógica aquí.');
+            //alert('Baja Mascota-Amo: Implementa tu lógica aquí.');
         });
         
         document.getElementById('baja-veterinario-form')?.addEventListener('submit', (e) => {
             e.preventDefault();
             console.log('Formulario de baja veterinario enviado');
-            alert('Baja Veterinario: Implementa tu lógica aquí.');
+            //alert('Baja Veterinario: Implementa tu lógica aquí.');
         });
         
         // --- Formularios de Modificación (modificacion.html) ---
@@ -92,19 +93,19 @@ class App {
             // Este evento se dispara con el botón "Actualizar" (type="submit")
             e.preventDefault();
             console.log('Formulario de modificación amo ACTUALIZADO');
-            alert('Modificación Amo (Actualizar): Implementa tu lógica aquí.');
+            //alert('Modificación Amo (Actualizar): Implementa tu lógica aquí.');
         });
         
         document.getElementById('mod-mascota-form')?.addEventListener('submit', (e) => {
             e.preventDefault();
             console.log('Formulario de modificación mascota ACTUALIZADO');
-            alert('Modificación Mascota (Actualizar): Implementa tu lógica aquí.');
+            //alert('Modificación Mascota (Actualizar): Implementa tu lógica aquí.');
         });
         
         document.getElementById('mod-veterinario-form')?.addEventListener('submit', (e) => {
             e.preventDefault();
             console.log('Formulario de modificación veterinario ACTUALIZADO');
-            alert('Modificación Veterinario (Actualizar): Implementa tu lógica aquí.');
+            //alert('Modificación Veterinario (Actualizar): Implementa tu lógica aquí.');
         });
         
         // --- Interacciones específicas ---
@@ -134,11 +135,11 @@ class App {
                     amoNombreDisplay.textContent = selectAmo.options[selectAmo.selectedIndex].text;
                     // Aquí iría la lógica para cargar y mostrar los datos en la tabla 'amo-mascotas-table'
                     resultContainer.classList.remove('hidden');
-                    alert('Lógica para CARGAR y MOSTRAR mascotas del amo aquí.');
+                    //alert('Lógica para CARGAR y MOSTRAR mascotas del amo aquí.');
                 } else if (resultContainer) {
                     resultContainer.classList.add('hidden');
                     if (amoNombreDisplay) amoNombreDisplay.textContent = "";
-                    if (!selectAmo?.value) alert("Por favor, seleccione un amo para mostrar sus mascotas.");
+                    //if (!selectAmo?.value)alert("Por favor, seleccione un amo para mostrar sus mascotas.");
                 }
             });
         }
@@ -155,11 +156,11 @@ class App {
                     mascotaNombreDisplay.textContent = selectMascota.options[selectMascota.selectedIndex].text;
                     // Aquí iría la lógica para cargar y mostrar los datos en la tabla 'mascota-amos-table'
                     resultContainer.classList.remove('hidden');
-                    alert('Lógica para CARGAR y MOSTRAR amos de la mascota aquí.');
+                    //alert('Lógica para CARGAR y MOSTRAR amos de la mascota aquí.');
                 } else if (resultContainer) {
                     resultContainer.classList.add('hidden');
                     if (mascotaNombreDisplay) mascotaNombreDisplay.textContent = "";
-                    if (!selectMascota?.value) alert("Por favor, seleccione una mascota para mostrar sus amos.");
+                    //if (!selectMascota?.value) alert("Por favor, seleccione una mascota para mostrar sus amos.");
                 }
             });
         }
@@ -183,7 +184,9 @@ class App {
             }
         });
     }
+        */
 }
+    
 
 // Al final de tu app.js (si es el último script cargado)
 document.addEventListener('DOMContentLoaded', () => {
