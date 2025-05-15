@@ -25,3 +25,9 @@ $routes->post('altas/alta_veterinario', 'AltasController::alta_veterinario');
 $routes->post('altas/guardarAsociacion', 'AltasController::guardarAsociacion'); // Procesa el guardado
 
 //modificacion
+$routes->post('modificacionController/modificarAmo', 'ModificacionController::modificarAmo');
+$routes->post('modificacionController/guardarAmo', 'ModificacionController::guardarAmo');
+$routes->post('modificacionController/modificarMascota', 'ModificacionController::modificarMascota');
+$routes->post('modificacionController/guardarMascota', 'ModificacionController::guardarMascota');
+$routes->post('modificacionController/modificarVeterinario', 'ModificacionController::modificarVeterinario');
+$routes->post('modificacionController/guardarVeterinario', 'ModificacionController::guardarVeterinario');
