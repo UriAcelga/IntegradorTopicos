@@ -7,7 +7,7 @@
     <title>Mi Veterinaria - Alta</title>
     <link rel="stylesheet" href="<?= base_url('css/output.css') ?>">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
-
+    <link rel="icon" href="<?= base_url('images/logo_vete.png') ?>" type="image/png">
 </head>
 
 <body class="bg-cover font-sans antialiased">
