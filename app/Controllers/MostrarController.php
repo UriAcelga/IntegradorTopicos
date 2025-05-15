@@ -16,13 +16,15 @@ class MostrarController extends BaseController
         $modeloVeterinarios = new Veterinarios_db();
 
         $data = [
-            'amos' => $modeloAmos->paginate(10),
-            'pagerAmos' => $modeloAmos->pager,
-            //'mascotas' => $modeloMascotas->paginate(10),
-            //'pagerMascotas' => $modeloMascotas->pager,
+            'amos' => $modeloAmos->findAll(),
             'mascotas' => $modeloMascotas->findAll(),
-            'veterinarios' => $modeloVeterinarios->paginate(10),
-            'pagerVeterinarios' => $modeloVeterinarios->pager,
+            'veterinarios' => $modeloVeterinarios->findAll(),
+            'amosActivos' => $modeloAmos->distinct()
+                         ->select('amos.*')
+                         ->join('amo_mascota', 'amos.id_amo = amo_mascota.id_amo') 
+                         ->where('amo_mascota.es_actual', 1)
+                         ->orderBy('amos.apellido', 'ASC')->orderBy('amos.nombre', 'ASC')
+                         ->findAll(),
         ];
         return view('mostrar', $data);
     }

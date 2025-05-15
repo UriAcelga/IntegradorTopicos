@@ -123,74 +123,44 @@
 
         <div id="mascotas-por-amo-tab" class="tab-content"> 
             <h3 class="text-lg font-semibold mb-2">Mascotas por Amo</h3>
-            <form id="form-mascotas-por-amo" class="space-y-4 mb-4"> 
+            <form id="form-mascotas-por-amo" class="space-y-4 mb-4" method="post" action="<?= base_url('mostrarMascotasPorAmo') ?>"> 
                 <div class="mb-4">
                     <label for="amo-mascotas-select" class="block text-gray-700 text-sm font-bold mb-2">Seleccionar Amo:</label>
                     <select id="amo-mascotas-select" name="amo_mascotas_select" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white" required>
-                        <option value="">-- Seleccione un Amo --</option>
+                        <option value="" selected disabled>-- Seleccione un Amo --</option>
+                        <?php if(!empty($amosActivos)) foreach($amosActivos as $amoA): ?>
+                            <option value="<?= esc($amoA['id_amo']) ?>"><?= esc($amoA['id_amo']) . ' - ' . esc($amoA['nombre']) . esc($amoA['apellido'])?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="flex justify-center">
-                    <a href="<?= base_url('mostrarMascotasPorAmo') ?>">
-                        <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Mostrar Mascotas</button>
-                    </a>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Mostrar Mascotas</button>   
                 </div>
             </form>
-            <div id="amo-mascotas-result" class="hidden"> 
-                <h4 class="text-lg font-semibold mb-2">Mascotas de <span id="amo-nombre-display"></span></h4>
-                <div class="overflow-x-auto">
-                    <table id="amo-mascotas-table" class="min-w-full leading-normal shadow-md rounded-lg">
-                        <thead>
-                            <tr class="bg-green-500 text-white">
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Nombre</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Especie</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Raza</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Nro. Registro</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Fecha Inicio</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Fecha Fin</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
 
-        <div id="amos-por-mascota-tab" class="tab-content"> 
+        <div id="amos-por-mascota-tab" class="tab-content" > 
             <h3 class="text-lg font-semibold mb-2">Amos por Mascota</h3>
-            <form id="form-amos-por-mascota" class="space-y-4 mb-4"> 
+            <form id="form-amos-por-mascota" class="space-y-4 mb-4" method="post" action="<?= base_url('mostrarAmosPorMascota') ?>"> 
                 <div class="mb-4">
                     <label for="mascota-amos-select" class="block text-gray-700 text-sm font-bold mb-2">Seleccionar Mascota:</label>
                     <select id="mascota-amos-select" name="mascota_amos_select" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white" required>
-                        <option value="">-- Seleccione una Mascota --</option>
+                        <option value="" selected disabled>-- Seleccione una Mascota --</option>
+                        <?php if(!empty($mascotas)) foreach($mascotas as $mascota): ?>
+                            <option value="<?= esc($mascota['nro_registro']) ?>">
+                                <?= esc($mascota['nro_registro']) . ' - ' . 
+                                esc($mascota['nombre']) . ', ' . 
+                                esc($mascota['especie']) . ' ' . 
+                                esc($mascota['raza']) . ' ' . 
+                                (($mascota['sexo'] === 'macho') ? 'M' : 'F')?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="flex justify-center">
-                    <a href="<?= base_url('mostrarAmosPorMascota') ?>">
-                        <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Mostrar Amos</button>
-                    </a>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Mostrar Amos</button>   
                 </div>
             </form>
-            <div id="mascota-amos-result" class="hidden"> 
-                <h4 class="text-lg font-semibold mb-2">Amos de <span id="mascota-nombre-display"></span></h4>
-                <div class="overflow-x-auto">
-                    <table id="mascota-amos-table" class="min-w-full leading-normal shadow-md rounded-lg">
-                        <thead>
-                            <tr class="bg-green-500 text-white">
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Nombre y Apellido</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Dirección</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Teléfono</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Fecha Inicio</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Fecha Fin</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
     </div> 
 </div>
