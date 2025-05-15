@@ -16,18 +16,38 @@
 
     <div id="baja-mascota-amo-tab" class="tab-content active mt-4">
         <h3 class="text-lg font-semibold mb-2">Baja de Relación Mascota-Amo</h3>
-        <form id="baja-mascota-amo-form" class="space-y-4">
+       <?php echo form_open('bajasController/eleccion')?>
+            
             <div class="bg-gray-300 rounded-md p-4 text-gray-800">
                 <div class="mb-2">
                     <label for="baja-amo-select" class="block text-gray-700 text-sm font-bold mb-2">Seleccionar Amo:</label>
-                    <select id="baja-amo-select" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white" required>
+                    <select name="amo" id="baja-amo-select" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white" required>
                         <option value="">-- Seleccione un Amo --</option>
+                         <?php  if(!empty($amos)) foreach($amos as $amo){ ?>
+                    <option value="<?php echo $amo['id_amo'];?>"<?php if (!empty($amoId) &&  $amoId == $amo['id_amo']) echo 'selected';?>><?php echo $amo['id_amo']."- ". $amo['nombre']." ".$amo['apellido'];?></option>
+                    <?php } ?>  
                     </select>
+                    
                 </div>
+ <?php echo form_submit([
+        'name' => 'enviar',
+        'value' => 'Elegir',
+        'class' => 'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+      ]); 
+     echo form_close();
+
+     if(!empty($mascotas)){
+    ?>
+    
                 <div class="mb-2">
+
+                    <?php echo form_open('bajasController/baja')?>
                     <label for="baja-mascota-select" class="block text-gray-700 text-sm font-bold mb-2">Seleccionar Mascota:</label>
-                    <select id="baja-mascota-select" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white" id="baja-mascota-select" required disabled>
+                    <select name="mascota" id="baja-mascota-select" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white" id="baja-mascota-select" required>
                         <option value="">-- Seleccione una Mascota --</option>
+                        <?php foreach($mascotas as $mascota){ ?>
+                    <option value="<?php echo $mascota['nro_registro'];?>"><?php echo $mascota['nro_registro']."- ". $mascota['nombre']?></option>
+                    <?php } ?>
                     </select>
                 </div>
                 <div class="mb-2">
@@ -44,13 +64,25 @@
                                    class="focus:ring-green-500 h-4 w-4 text-green-500 border-gray-300 rounded">
                         </div>
                     </div>
+                    <input type="hidden" name="amo" value="<?php echo $amoId[0]; ?>">
                 </div>
                 <div class="flex justify-center mt-4">
-                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Dar de Baja</button>
+                     <?php echo form_submit([
+        'name' => 'enviar',
+        'value' => 'Dar De Baja',
+        'class' => 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+      ]); 
+    ?>
                 </div>
+               
             </div>
-        </form>
+        <?php 
+        echo form_close()?>
     </div>
+<?php }
+?>
+
+
 
     <div id="baja-veterinario-tab" class="tab-content hidden mt-4">
         <h3 class="text-lg font-semibold mb-2">Baja de Veterinario</h3>
@@ -60,7 +92,10 @@
                     <label for="baja-vet-select" class="block text-gray-700 text-sm font-bold mb-2">Seleccionar Veterinario:</label>
                     <select id="baja-vet-select" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white" required>
                         <option value="">-- Seleccione un Veterinario --</option>
-                    </select>
+                        <?php  if(!empty($veterinarios)) foreach($veterinarios as $veterinario){ ?>
+                    <option value="<?php echo $veterinario['id_veterinario'];?>"><?php echo $veterinario['id_veterinario']."-".$veterinario['especialidad']."-".  $veterinario['nombre']." ".$veterinario['apellido'];?></option>  
+              <?php }?>
+                </select>
                 </div>
                 <div class="flex justify-center mt-4">
                     <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Dar de Baja</button>
@@ -68,5 +103,14 @@
             </div>
         </form>
     </div>
+    
 </div>
+<?php
+if(session('success')){ ?>
+    <div class="alert alert-success">
+      <?php  echo session('success') ?>
+    </div>
+    <?php
+}
+?>
 <?= $this->endSection() ?>
