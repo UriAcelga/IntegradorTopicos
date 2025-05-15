@@ -10,7 +10,10 @@
 
 </head>
 
-<body style="background-image: url('<?= base_url('images/veterinario.jpg') ?>')" class="bg-cover font-sans antialiased">
+<body class="bg-cover font-sans antialiased">
+    <div class="fixed inset-0 -z-10 h-full w-full">
+        <img src="<?= base_url('images/veterinario.jpg') ?>" alt="Veterinario" class="object-cover w-full h-full" />
+    </div>
     <div class="mx-auto max-w-3xl p-4">
         <header class="bg-green-500 text-white py-4 px-6 rounded-t-md shadow-md flex justify-between items-center">
             <h1 class="text-2xl font-semibold">Mi Veterinaria</h1>
