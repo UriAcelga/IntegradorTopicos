@@ -7,10 +7,11 @@
 <?= $this->section('content') ?>
 <div class="bg-white rounded-md shadow-md p-6 mt-4">
     <a href="<?= base_url('mostrar') ?>">
-        <h2 class="text-xl font-semibold mb-4"><span class="text-green-500"><<< </span>Regresar a Mostrar</h2>
+        <h2 class="text-xl font-semibold mb-4"><span class="text-green-500">
+                <<< </span> Regresar a Mostrar</h2>
     </a>
     <div id="mascota-amos-result">
-        <h4 class="text-lg font-semibold mb-2">Amos de <span id="mascota-nombre-display"></span></h4>
+        <h4 class="text-lg font-semibold mb-2">Amos de <?= esc('nombreMascota') ?></h4>
         <div class="overflow-x-auto">
             <table id="mascota-amos-table" class="min-w-full leading-normal shadow-md rounded-lg">
                 <thead>

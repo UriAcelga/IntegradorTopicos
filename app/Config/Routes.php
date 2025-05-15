@@ -10,8 +10,8 @@ $routes->get('altas', 'AltasController::index');
 $routes->get('bajas', 'BajasController::index');
 $routes->get('modificacion', 'ModificacionController::index');
 $routes->get('mostrar', 'MostrarController::index');
-$routes->get('mostrarMascotasPorAmo', 'MostrarController::mascotasPorAmo');
-$routes->get('mostrarAmosPorMascota', 'MostrarController::amosPorMascota');
+$routes->post('mostrarMascotasPorAmo', 'MostrarController::mascotasPorAmo');
+$routes->post('mostrarAmosPorMascota', 'MostrarController::amosPorMascota');
 //bajas
 $routes->post('/bajasController/eleccion', 'BajasController::eleccion');   
 $routes->post('/bajasController/baja', 'BajasController::baja');   

@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Amos_db;
 use App\Models\Mascotas_db;
 use App\Models\Veterinarios_db;
+use App\Models\Amos_mascotas_db;
 
 class MostrarController extends BaseController
 {
@@ -31,11 +32,43 @@ class MostrarController extends BaseController
 
     public function mascotasPorAmo()
     {
-        return view('mostrarMascotasPorAmo');
+        if (is_null($this->request->getPost('amo_mascotas_select'))) {
+            return $this->index();
+        }
+
+        $idAmo = $this->request->getPost('amo_mascotas_select');
+        $modeloMascotas = new Mascotas_db(); 
+        $modeloAmos = new Amos_db();
+
+        $data = [
+            'nombreAmo' => $modeloAmos->select('nombre')->where('id_amo', $idAmo)->first()['nombre'],
+            'mascotas' => $modeloMascotas
+                ->select('mascotas.*, amo_mascota.es_actual')
+                ->join('amo_mascota', 'mascotas.nro_registro = amo_mascota.id_mascota')
+                ->where('amo_mascota.id_amo', $idAmo)
+                ->findAll(),
+        ];
+        return view('mostrarMascotasPorAmo', $data);
     }
 
     public function amosPorMascota()
     {
-        return view('mostrarAmosPorMascota');
+        if (is_null($this->request->getPost('mascota-amos-select'))) {
+            return $this->index();
+        }
+
+        $idMascota = $this->request->getPost('amo_mascotas_select');
+        $modeloAmos = new Amos_db();
+        $modeloMascotas = new Mascotas_db();
+
+        $data = [
+            'nombreMascota' => $modeloMascotas->select('nombre')->where('nro_registro', $idMascota)->first()['nombre'],
+            'amos' => $modeloAmos
+                ->select('amos.*, amo_mascota.es_actual')
+                ->join('amo_mascota', 'amos.id_amo = amo_mascota.id_amo')
+                ->where('amo_mascota.id_mascota', $idMascota)
+                ->findAll(),
+        ];
+        return view('mostrarAmosPorMascota', $data);
     }
 }
