@@ -641,6 +641,15 @@
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
+
+  .tab-content {
+    display: none !important; /* Oculta todos los contenidos de pestaña por defecto */
+}
+
+.tab-content.active {
+    display: block !important;
+ /* Muestra solo el contenido de la pestaña activa */
+}
   .hover\:bg-blue-700 {
     &:hover {
       @media (hover: hover) {
@@ -987,4 +996,71 @@
       --tw-drop-shadow-size: initial;
     }
   }
+}
+
+/* Contenedor de los botones de las pestañas: estilos base para pantallas grandes */
+.tab-buttons-container {
+    display: flex; /* Organiza los botones en una fila */
+    flex-wrap: nowrap; /* Evita que los botones salten a la siguiente línea por defecto */
+    overflow-x: auto; /* Permite el desplazamiento horizontal si los botones no caben */
+    padding-bottom: 0.5rem; /* Espacio para la barra de desplazamiento si aparece */
+    -webkit-overflow-scrolling: touch; /* Desplazamiento más suave en iOS */
+    scrollbar-width: thin; /* Barra de desplazamiento más delgada en Firefox */
+    scrollbar-color: #a0aec0 #edf2f7; /* Color de la barra de desplazamiento (thumb track) */
+}
+
+/* Estilo para la barra de desplazamiento en navegadores Webkit (Chrome, Safari, Edge) */
+.tab-buttons-container::-webkit-scrollbar {
+    height: 8px; /* Altura de la barra de desplazamiento horizontal */
+}
+
+.tab-buttons-container::-webkit-scrollbar-track {
+    background: #edf2f7; /* Color del track */
+    border-radius: 10px;
+}
+
+.tab-buttons-container::-webkit-scrollbar-thumb {
+    background-color: #a0aec0; /* Color del thumb (la parte que se arrastra) */
+    border-radius: 10px;
+    border: 2px solid #edf2f7; /* Espacio alrededor del thumb */
+}
+
+/* Cada botón de pestaña */
+.tab-buttons-container .tab-btn {
+    white-space: nowrap; /* Evita que el texto del botón se divida en múltiples líneas */
+    flex-shrink: 0; /* Evita que los botones se encojan si el espacio es limitado */
+}
+
+/* Media Query para pantallas pequeñas (menos de 500px) */
+@media (max-width: 499px) {
+    .tab-buttons-container {
+        flex-direction: column; /* Apila los botones verticalmente */
+        flex-wrap: nowrap; /* Asegura que no haya salto de línea no deseado */
+        overflow-x: hidden; /* Oculta la barra de desplazamiento horizontal */
+        align-items: stretch; /* Estira los botones para que ocupen el ancho disponible */
+        padding-bottom: 0; /* Ya no se necesita espacio para la barra de desplazamiento */
+        margin-bottom: 1rem; /* Espacio debajo del grupo de botones apilados */
+    }
+
+    .tab-buttons-container .tab-btn {
+        width: 100%; /* Cada botón ocupa el ancho completo */
+        margin-right: 0; /* Elimina el espacio horizontal entre botones */
+        margin-bottom: 0.5rem; /* Espacio vertical entre botones apilados */
+        text-align: center; /* Centra el texto del botón */
+        /* Asegura que el borde inferior sea visible y consistente */
+        border-bottom-width: 2px !important; /* Puede ser necesario !important si hay conflictos */
+    }
+
+    .tab-buttons-container .tab-btn:last-child {
+        margin-bottom: 0; /* Elimina el margen inferior del último botón */
+    }
+
+    /* Ajuste para el div que envuelve .tab-buttons-container si tiene -mb-px */
+    /* Asumiendo que el padre directo de .tab-buttons-container es el que tiene .border-b */
+    .border-b > .tab-buttons-container.-mb-px {
+         margin-bottom: 1rem !important; /* Restaura un margen inferior adecuado */
+    }
+     .tab-buttons-container.-mb-px { /* Si -mb-px está directamente en el tab-buttons-container */
+        margin-bottom: 1rem !important;
+    }
 }

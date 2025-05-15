@@ -1,72 +1,103 @@
-// Gestor de Vistas (Adaptado para múltiples páginas)
+// public/js/viewManager.js
 class ViewManager {
     constructor() {
-        // No necesitamos inicializar las vistas principales aquí,
-        // ya que cada página es su propia vista.
-
-        // Inicializar eventos que son relevantes DENTRO de cada página.
+        // Inicializar eventos específicos de la página (como los listeners de las pestañas).
         this._initPageSpecificEvents();
-
-        // Añadir inicialización explícita de la pestaña activa al cargar
+        // Activar la pestaña inicial que esté marcada en el HTML o la primera por defecto.
         this._activateInitialTab();
     }
 
     _initPageSpecificEvents() {
-        // ... (tu código actual de listeners para botones de pestaña) ...
-         document.querySelectorAll('.tab-btn').forEach(btn => {
+        // Selecciona todos los botones de pestaña en el documento.
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            // Añade un event listener para el evento 'click' a cada botón.
             btn.addEventListener('click', (e) => {
-                const tabId = e.target.getAttribute('data-tab');
-                const viewContainer = e.target.closest('.view');
+                const clickedButton = e.currentTarget; // El botón que fue clickeado.
+                const tabId = clickedButton.getAttribute('data-tab'); // El valor de 'data-tab' del botón.
+                // Encuentra el contenedor '.view' más cercano que envuelve este grupo de pestañas.
+                const viewContainer = clickedButton.closest('.view');
 
-                if (!viewContainer) return;
-
-                viewContainer.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                viewContainer.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-
-                e.target.classList.add('active');
-                const tabContentElement = viewContainer.querySelector('#' + tabId + '-tab');
-                if (tabContentElement) {
-                    tabContentElement.classList.add('active');
-                } else {
-                    console.warn('No se encontró el contenido de la pestaña:', tabId + '-tab');
+                // Si no se encuentra un contenedor, muestra una advertencia y no hace nada.
+                if (!viewContainer) {
+                    console.warn('Contenedor .view no encontrado para el botón de pestaña.');
+                    return;
                 }
+
+                // Selecciona todos los botones de pestaña y paneles de contenido dentro del mismo contenedor.
+                const buttonsInGroup = viewContainer.querySelectorAll('.tab-btn');
+                const contentPanesInGroup = viewContainer.querySelectorAll('.tab-content');
+
+                // Itera sobre cada botón en el grupo.
+                buttonsInGroup.forEach(b => {
+                    const isClicked = (b === clickedButton); // Verifica si este botón 'b' es el que se clickeó.
+
+                    // Clases base (comunes a todos los botones, no se tocan aquí):
+                    // tab-btn py-2 px-4 border-b-2 font-semibold
+
+                    // Clases para el estado ACTIVO:
+                    // active, border-green-500, text-green-500
+                    // (y se quitan las de inactivo/hover si el diseño lo requiere)
+
+                    // Clases para el estado INACTIVO:
+                    // border-transparent, text-gray-500, hover:text-green-500, hover:border-gray-300
+                    // (y se quitan las de activo)
+
+                    if (isClicked) {
+                        // Si es el botón clickeado, aplicar estilos de ACTIVO.
+                        b.classList.add('active', 'border-green-500', 'text-green-500');
+                        // Quitar estilos de INACTIVO y los de hover específicos de inactivo.
+                        b.classList.remove('border-transparent', 'text-gray-500', 'hover:text-green-500', 'hover:border-gray-300');
+                    } else {
+                        // Si NO es el botón clickeado, aplicar estilos de INACTIVO.
+                        b.classList.remove('active', 'border-green-500', 'text-green-500');
+                        // Añadir estilos de INACTIVO y los de hover para inactivos.
+                        b.classList.add('border-transparent', 'text-gray-500', 'hover:text-green-500', 'hover:border-gray-300');
+                    }
+                });
+
+                // Itera sobre cada panel de contenido en el grupo.
+                contentPanesInGroup.forEach(pane => {
+                    // Comprueba si el ID del panel coincide con el 'data-tab' del botón clickeado.
+                    if (pane.id === tabId + '-tab') {
+                        pane.classList.add('active'); // Muestra el panel (CSS: .tab-content.active { display: block; })
+                    } else {
+                        pane.classList.remove('active'); // Oculta el panel (CSS: .tab-content { display: none; })
+                    }
+                });
             });
         });
-
-        // ... (resto de tus listeners, para selects de modificación, etc.) ...
-
-        // No es necesario añadir listeners de navegación aquí si se usa href/onclick
     }
 
-    // Método para asegurar que la pestaña marcada como 'active' en el HTML se muestre
     _activateInitialTab() {
-        // Buscar todos los contenedores de vista en la página (debería haber 1 por página)
+        // Itera sobre cada contenedor '.view' en la página (normalmente uno por conjunto de pestañas).
         document.querySelectorAll('.view').forEach(viewContainer => {
-            // Buscar el botón de pestaña que está marcado como activo inicialmente en este contenedor de vista
-            const initialTabBtn = viewContainer.querySelector('.tab-btn.active');
+            // Intenta encontrar un botón que ya esté marcado como 'active' en el HTML.
+            let initialTabBtn = viewContainer.querySelector('.tab-btn.active');
+
+            if (!initialTabBtn) {
+                // Si ningún botón está marcado como 'active', selecciona el primer botón de pestaña que encuentre.
+                initialTabBtn = viewContainer.querySelector('.tab-btn');
+            }
 
             if (initialTabBtn) {
-                const tabId = initialTabBtn.getAttribute('data-tab');
-                const tabContentElement = viewContainer.querySelector('#' + tabId + '-tab');
-
-                if (tabContentElement) {
-                    // Asegurarse de que el contenido correspondiente también tenga la clase active
-                    // (Aunque ya la tenga en el HTML, esto lo refuerza y es claro)
-                    tabContentElement.classList.add('active');
-                    // Opcional: Si el CSS falla, podrías intentar setting display directamente
-                    // tabContentElement.style.display = 'block'; // Esto es una solución temporal si el CSS está mal
-
-                    console.log(`Inicializando con pestaña activa: ${tabId}`);
-                } else {
-                     console.warn(`Botón de pestaña activo encontrado (${tabId}), pero no se encontró el contenido con ID: ${tabId}-tab`);
-                }
-             } else {
-                 // Si no hay ningún botón con 'active' en este .view, podrías decidir
-                 // qué hacer, por ejemplo, activar el primer botón y su contenido
-                 // o simplemente no hacer nada (basándose en que el HTML define el estado inicial).
-                 // Por ahora, simplemente registramos si no hay activo inicial.
-                 console.log('No se encontró botón de pestaña marcado como activo inicialmente en un contenedor .view');
-             }
+                // Si se encuentra un botón inicial (ya sea pre-marcado o el primero),
+                // simula un clic en él. Esto ejecutará el event listener definido en _initPageSpecificEvents,
+                // asegurando que los estilos se apliquen consistentemente y el contenido correcto se muestre.
+                initialTabBtn.click();
+                console.log(`Pestaña inicial activada: ${initialTabBtn.getAttribute('data-tab')}`);
+            } else {
+                // Si no se encuentra ningún botón de pestaña en el contenedor.
+                console.warn('No se encontró ningún botón de pestaña para activar inicialmente en un .view');
+            }
         });
     }
 }
+
+// Asegúrate de que el DOM esté completamente cargado antes de instanciar ViewManager y App.
+// Esto ya lo tienes en tu app.js, así que esta parte es solo para recordar el contexto.
+/*
+document.addEventListener('DOMContentLoaded', () => {
+    const viewManager = new ViewManager(); 
+    const app = new App(); 
+});
+*/
