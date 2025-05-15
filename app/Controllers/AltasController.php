@@ -132,7 +132,7 @@ class AltasController extends BaseController
                 'nombre'    => $this->request->getPost('nombre'),
                 'apellido'  => $this->request->getPost('apellido'),
                 'telefono'  => $this->request->getPost('telefono'),
-                'direccion' => $this->request->getPost('direccion')
+                'direccion_amo' => $this->request->getPost('direccion')
             ];
             $amos_db = new Amos_db();
             if ($amos_db->CargarAmo($data)) { 

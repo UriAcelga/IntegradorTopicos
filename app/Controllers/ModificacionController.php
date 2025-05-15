@@ -64,7 +64,7 @@ return view('modificacion',$data);
     'telefono' => $telefono,
    ];
 $modeloAmo->update($id,$data);
- return redirect()->to('/modificacion')->with('success', 'modificacion de amo se realizo con éxito.');
+ return redirect()->to('/modificacion#amo-tab')->with('success', 'modificacion de amo se realizo con éxito.');
     }
 
     public function modificarMascota(){
@@ -96,7 +96,7 @@ $id = $this->request->getPost('mascota');
     'edad' => $edad,
 ];
 $modeloMascota->update($id,$data);
-return redirect()->to('/modificacion')->with('success', 'modificacion de mascota se realizo con éxito.');
+return redirect()->to('/modificacion#mascota-tab')->with('success', 'modificacion de mascota se realizo con éxito.');
     }
 
  public function modificarVeterinario(){
@@ -133,7 +133,7 @@ $id = $this->request->getPost('veterinario');
     'telefono' => $telefono,
 ];
 $modeloVeterinarios->update($id,$data);
-return redirect()->to('/modificacion')->with('success', 'modificacion de veterinario se realizo con éxito.');
+return redirect()->to('/modificacion#veterinario-tab')->with('success', 'modificacion de veterinario se realizo con éxito.');
 
 }
 }
