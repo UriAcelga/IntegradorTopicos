@@ -29,20 +29,29 @@
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Raza</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Nro. Registro</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Edad</th>
+                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Sexo</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Fecha de Alta</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Fecha de Defunción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-gray-100 hover:bg-gray-200">
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Firulais</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Perro</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Labrador</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">12345</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">5</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">2020-01-15</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">-</td>
-                        </tr>
+                        <?php if(!empty($mascotas)): foreach($mascotas as $mascota): ?>
+                            <tr class="bg-gray-100 hover:bg-gray-200">
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['nombre']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['especie']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['raza']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['nro_registro']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['edad']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['sexo']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['fecha_alta']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= (!empty(esc($mascota['fecha_defuncion']))) ? esc($mascota['fecha_defuncion']) : '-' ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr class="bg-gray-100 hover:bg-gray-200">
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm">No se encontraron registros</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -61,12 +70,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-gray-100 hover:bg-gray-200">
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Juan Pérez</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Calle Falsa 123</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">266-4567890</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">2019-03-10</td>
-                        </tr>
+                        <?php if(!empty($amos)): foreach($amos as $amo): ?>
+                            <tr class="bg-gray-100 hover:bg-gray-200">
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($amo['nombre']) . ' ' . esc($amo['apellido'])  ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($amo['direccion_amo']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($amo['telefono']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($amo['fecha_alta']) ?></td>
+                            </tr>   
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr class="bg-gray-100 hover:bg-gray-200">
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm">No se encontraron registros</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -86,13 +102,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-gray-100 hover:bg-gray-200">
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Ana Gómez</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Clínica General</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">266-1234567</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">2018-07-01</td>
-                            <td class="px-5 py-5 border-b border-gray-200 text-sm">-</td>
-                        </tr>
+                        <?php if(!empty($veterinarios)): foreach($veterinarios as $vet): ?>
+                            <tr class="bg-gray-100 hover:bg-gray-200">
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($vet['nombre']) . ' ' . esc($vet['apellido'])  ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= ucfirst(esc($vet['especialidad'])) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($vet['telefono']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($vet['fecha_ingreso']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= (!empty(esc($vet['fecha_egreso']))) ? esc($vet['fecha_egreso']) : '-' ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr class="bg-gray-100 hover:bg-gray-200">
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm">No se encontraron registros</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>

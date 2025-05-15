@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Database\Seeds\Basic;
+namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 use Faker\Factory;

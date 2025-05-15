@@ -111,10 +111,18 @@
                 <?= csrf_field() ?>
                 <div class="bg-gray-300 rounded-md p-4 text-gray-800">
                     <div class="mb-2">
-                        <label for="vet-nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre y Apellido:</label>
+                        <label for="vet-nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
                         <input type="text" id="vet-nombre" name="nombre" value="<?= set_value('nombre') ?>" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline <?= (isset($validation_veterinario) && $validation_veterinario->hasError('nombre')) ? 'border-red-500' : 'border-gray-300' ?>">
                         <?php if (isset($validation_veterinario) && $validation_veterinario->hasError('nombre')): ?>
                             <p class="text-red-500 text-xs italic mt-1"><?= esc($validation_veterinario->getError('nombre')) ?></p>
+                        <?php endif; ?>
+                    </div>
+
+                     <div class="mb-2">
+                        <label for="vet-apellido" class="block text-gray-700 text-sm font-bold mb-2">Apellido:</label>
+                        <input type="text" id="vet-apelldo" name="apellido" value="<?= set_value('apellido') ?>" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline <?= (isset($validation_veterinario) && $validation_veterinario->hasError('apellido')) ? 'border-red-500' : 'border-gray-300' ?>">
+                        <?php if (isset($validation_veterinario) && $validation_veterinario->hasError('apellido')): ?>
+                            <p class="text-red-500 text-xs italic mt-1"><?= esc($validation_veterinario->getError('apellido')) ?></p>
                         <?php endif; ?>
                     </div>
                     <div class="mb-2">
@@ -171,6 +179,7 @@
                             <option value="cerdo" <?= set_select('especie', 'cerdo') ?>>Cerdo</option>
                             <option value="cobayo" <?= set_select('especie', 'cobayo') ?>>Cobayo</option>
                             <option value="pajaros" <?= set_select('especie', 'pajaros') ?>>Pájaros</option>
+                            <option value="otro" <?= set_select('especie', 'otro') ?>>Otro Animal</option>
                         </select>
                         <?php if (isset($validation_mascota) && $validation_mascota->hasError('especie')): ?>
                             <p class="text-red-500 text-xs italic mt-1"><?= esc($validation_mascota->getError('especie')) ?></p>

@@ -217,6 +217,7 @@ class AltasController extends BaseController
     {
         $rules = [
             'nombre'       => 'required|min_length[4]|max_length[50]', 
+            'apellido'     => 'required|min_length[4]|max_length[50]',
             'telefono'     => 'required|numeric|min_length[10]|max_length[15]',
             'especialidad' => 'required'
         ];
@@ -233,6 +234,11 @@ class AltasController extends BaseController
                 'min_length' => 'El telefono debe tener al menos 10 numeros',    
                 'max_length' => 'El telefono no puede tener más de 15 numeros',
             ],
+            'apellido' => [
+                'required'   => 'El campo apellido es obligatorio',
+                'min_length' => 'El apellido debe tener al menos 4 caracteres',
+                'max_length' => 'El apellido no puede tener más de 50 caracteres',
+            ],
             'especialidad' => [
                 'required' => 'El campo especialidad es obligatorio',
             ],
@@ -241,6 +247,7 @@ class AltasController extends BaseController
         if ($this->validate($rules, $messages)) { // Pasando los mensajes personalizados
             $data = [
                 'nombre'       => $this->request->getPost('nombre'), 
+                'apellido'     => $this->request->getPost('apellido'),
                 'especialidad' => $this->request->getPost('especialidad'),
                 'telefono'     => $this->request->getPost('telefono')
             ];
