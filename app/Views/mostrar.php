@@ -29,6 +29,7 @@
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Raza</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Nro. Registro</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Edad</th>
+                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Sexo</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Fecha de Alta</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Fecha de Defunción</th>
                         </tr>
@@ -41,6 +42,7 @@
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['raza']) ?></td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['nro_registro']) ?></td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['edad']) ?></td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['sexo']) ?></td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= esc($mascota['fecha_alta']) ?></td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm"><?= (!empty(esc($mascota['fecha_defuncion']))) ? esc($mascota['fecha_defuncion']) : '-' ?></td>
                             </tr>
