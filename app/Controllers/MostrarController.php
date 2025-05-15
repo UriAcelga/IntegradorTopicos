@@ -26,4 +26,14 @@ class MostrarController extends BaseController
         ];
         return view('mostrar', $data);
     }
+
+    public function mascotasPorAmo()
+    {
+        return view('mostrarMascotasPorAmo');
+    }
+
+    public function amosPorMascota()
+    {
+        return view('mostrarAmosPorMascota');
+    }
 }
