@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Database\Seeds\Basic;
+namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 use Faker\Factory;
@@ -13,13 +13,13 @@ class MascotasSeeder extends Seeder
         $especies = ['perro', 'gato', 'conejo', 'caballo', 'cerdo'];
         $razas = [
             'perro' => ['labrador', 'bulldog', 'beagle', 'poodle'],
-            'gato' => ['persa', 'siames', 'bengala', 'sphynx'],
+            'gato' => ['persa', 'siames', 'bengala'],
             'conejo' => ['enano', 'angora', 'holandes'],
             'caballo' => ['pura sangre', 'andaluz', 'mustang'],
             'cerdo' => ['ibérico', 'duroc', 'landrace']
         ];
-        $fecha_defuncion = ($faker->boolean(30)) ? $faker->dateTimeBetween('-6 months', 'now')->format('Y-m-d H:i:s') : null;
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 55; $i++) {
+            $fecha_defuncion = ($faker->boolean(30)) ? $faker->dateTimeBetween('-6 months', 'now')->format('Y-m-d H:i:s') : null;
             $especie = $faker->randomElement($especies);
             $raza = $faker->randomElement($razas[$especie]);
             $data = [

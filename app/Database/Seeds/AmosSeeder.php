@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Database\Seeds\Basic;
+namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 use Faker\Factory;
@@ -10,7 +10,7 @@ class AmosSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create('es_ES');
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $data = [
                 'nombre' => $faker->firstName(),
                 'apellido' => $faker->lastName(),
