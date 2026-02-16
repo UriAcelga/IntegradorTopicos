@@ -1,3 +1,34 @@
+# 🐾 Mi Veterinaria - Sistema de Gestión Integral
+
+Aplicación web desarrollada bajo el patrón **MVC (Model-View-Controller)** utilizando el framework **CodeIgniter**. El sistema gestiona la compleja red de relaciones entre mascotas, propietarios (amos) y profesionales veterinarios.
+
+## 🧠 Desafíos Técnicos Resueltos
+
+* **Relaciones Complejas (N:N):** Implementación de tablas intermedias para gestionar que una mascota pueda tener múltiples dueños a lo largo del tiempo y un dueño múltiples mascotas.
+* **Lógica de Negocio Avanzada:** * Gestión de estados: Finalización de relación amo-mascota por venta o fallecimiento.
+    * Control contractual: Seguimiento de ingresos y egresos del personal médico.
+* **Integridad de Datos:** Validaciones en formularios de alta para asegurar la consistencia entre registros de amos y mascotas.
+* **Consultas Cruzadas:** Filtros dinámicos para listar el historial de dueños de una mascota y viceversa.
+
+## 🛠️ Stack Tecnológico
+
+* **Framework:** CodeIgniter (PHP)
+* **Base de Datos:** MySQL (Relacional)
+* **Frontend:** Vistas dinámicas con PHP y maquetación responsiva.
+* **Patrón de Diseño:** MVC estricto para separación de lógica y presentación.
+
+## 📋 Funcionalidades Generales
+
+* **CRUD Completo:** Gestión total de Mascotas, Amos y Veterinarios.
+* **Módulo de Relaciones:** Registro inteligente de pares Amo-Mascota.
+* **Historiales:** Visualización detallada de la trayectoria de vida de las mascotas y su relación con los profesionales.
+
+## 🚀 Instalación
+
+1. Clona este repositorio.
+2. Configura tu servidor local (Apache/MySQL).
+3. Importa el esquema de base de datos incluido para habilitar las relaciones N:N.
+4. Ajusta los parámetros de conexión en la configuración del framework.
 # CodeIgniter 4 Application Starter
 
 ## What is CodeIgniter?
